@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../../../../../src/app/imagelogin/imagelogin.component.scss"
+    ],
+    "names": [],
+    "file": "imagelogin.component.min.css"
+}

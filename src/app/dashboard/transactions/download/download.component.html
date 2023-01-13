@@ -1,0 +1,83 @@
+<div class="transWrapper">
+  <div class="headerbackWrap">
+    <a href="javascript:;" routerLink="/dashboard/home" class="backBtnInHeader"><img src="assets/arrow.svg" alt=""></a>
+    <span class="titleOne">Withdraw CC from {{this.userLocal}}</span>
+  </div>
+  <div class="transBody">
+    <ng-container *ngIf="showNormal">
+      <form [formGroup]="exportForm">
+        <div class="formField">
+          <label for="username">Withdraw to:</label>
+          <div class="uploadFileWrap">
+            <span>{{file}}</span>
+            <div class="uploadIconWrap" (click)="getPath()">
+              <img src="assets/folder_icon.svg" alt="" class="folderIcon">
+            </div>
+          </div>
+        </div>
+        <div class="gap10"></div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="formField">
+              <label for="">Amount</label>
+            </div>
+          </div>
+          <div class="col-md-6 dispFlex dispFlexPriceTrans">
+            <div class="inputTagWrapper">
+              <span href="javascript:;" class="inpTag">CC</span>
+              <input type="tel" style="text-align:center;" placeholder="0" formControlName="amount"
+                (keypress)="_keyUp($event)">
+            </div>
+          </div>
+        </div>
+        <div class="gap20"></div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="formField">
+              <label for="">Format <img data-toggle="tooltip" data-placement="top"
+                  ngbTooltip="CCs are hidden inside files such as PNG or zip. The recipient will receive it in this format."
+                  class="infoicon" src="assets/info.svg" alt=""></label>
+            </div>
+            <div class="radioInpHolder">
+              <input type="radio" name="format" formControlName="format" value="png" checked><span>PNG file</span>
+            </div>
+            <div class="radioInpHolder">
+              <input type="radio" name="format" formControlName="format" value="zip"><span>ZIP file</span>
+            </div>
+            <div class="radioInpHolder">
+              <input type="radio" name="format" formControlName="format" value="bin"><span>Binary file</span>
+            </div>
+            <div class="gap10"></div>
+            <div class="gap10"></div>
+            <div class="formField">
+              <label for="">Name Tag <small>(optional)</small></label>
+              <input type="text" formControlName="fileName" placeholder="Ex: Coins">
+            </div>
+            <div *ngIf="isValidInput('fileName')">
+              <span class="errorMsg" *ngIf="exportForm.controls['fileName'].errors?.maxlength"><img
+                  src="assets/error_info_icon.svg" alt="error icon">Name Tag can't be longer than 64
+                characters.</span>
+            </div>
+            <div class="gap20"></div>
+            <div class="hideimage">
+              <canvas #quoteCanvas width="300" height="300"></canvas>
+            </div>
+          </div>
+        </div>
+      </form>
+    </ng-container>
+    <div class="transBottomFooter">
+      <a href="javascript:void(0);" [ngClass]="{'btnDisable': this.exportForm.invalid || file =='Choose folder'}"
+        (click)="exoprt()" class="btnCustomBlue">Withdraw CC</a>
+    </div>
+  </div>
+</div>
+
+<div class="onEventLoadWrap" *ngIf="showLoader">
+  <ng-container>
+    <div class="text-center loader_show">
+      <ng-lottie height="150px" [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie>
+      <span style="color:#ffffff">{{loadingMessage}}</span>
+    </div>
+  </ng-container>
+</div>

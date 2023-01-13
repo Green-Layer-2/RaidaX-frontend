@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../../../../../src/app/dashboard/create-sky-dash/create-sky-dash.component.scss"
+    ],
+    "names": [],
+    "file": "create-sky-dash.component.min.css"
+}

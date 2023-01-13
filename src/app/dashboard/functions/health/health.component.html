@@ -1,0 +1,68 @@
+<div class="transWrapper" *ngIf="type === 'localwallet'">
+    <div class="headerbackWrap">
+        <a href="javascript:;" routerLink="/dashboard/home" class="backBtnInHeader"><img src="assets/arrow.svg"
+                alt=""></a>
+        <span class="titleOne">Health Check</span>
+    </div>
+    <div class="gap20"></div>
+    <div class="transBody">
+        <p class="subTitleTwo">Health Check will ensure that all your coins are 100% authentic. It will move coins to
+            the Fractured (Fracked) or Counterfeit folder if they are not 100% authentic.</p>
+        <div class="headthSubHed">
+            <h4>Verifying Coin Authenticity for the Wallet: <span>{{userLocal}}</span></h4>
+        </div>
+        <div class="lineSection">
+            <div class="progressWrap" *ngIf="!goTODash">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped" role="progressbar"
+                        style="background-color: green!important;"
+                        [ngStyle]="{'width': healthProg?.progress < 15 ? 15 + healthProg?.progress + '%' :  healthProg?.progress + '%'}"
+                        aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">Checking
+                        coins...
+                    </div>
+                </div>
+            </div>
+            <div class="formField" *ngIf="healthProg?.progress === '100'">
+                <div class="checkboxInpHolder">
+                    <img src="assets/green-check.svg" alt="icon"> <span style="color: #2a4;"> Coin Verification process
+                        completed.</span>
+                </div>
+            </div>
+            <div class="gap10"></div>
+            <div class="healthList" *ngIf="goTODash && healthProg?.status === 'completed'">
+                <div class="healthListDiv">
+                    <p>Total coins found to be perfectly authentic:</p>
+                    <h6>{{this.healthProg?.data?.TotalAuthentic}}</h6>
+                </div>
+                <div class="healthListDiv">
+                    <p>Total coins found to be authentic but fractured:</p>
+                    <h6>{{this.healthProg?.data?.TotalFracked + this.healthProg?.data?.TotalAlreadyFracked}}</h6>
+                </div>
+                <div class="healthListDiv">
+                    <p>Total coins found to be counterfeit:</p>
+                    <h6>{{this.healthProg?.data?.TotalCounterfeit}}</h6>
+                </div>
+                <div class="healthListDiv">
+                    <p>Total Errors:</p>
+                    <h6>{{this.healthProg?.data?.TotalErrors}}</h6>
+                </div>
+                <div class="healthListDiv">
+                    <p>Total Coins:</p>
+                    <h6>{{this.healthProg?.data?.TotalCoins}}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="transBottomFooter">
+        <button class="btnCustomBlue" [ngClass]="{'btnDisable': goTODash === false}"
+            (click)="goTODash ? router.navigate(['/dashboard/home']) : ''">close</button>
+    </div>
+</div>
+<div class="onEventLoadWrap" *ngIf="showLoader">
+    <ng-container>
+        <div class="text-center loader_show">
+            <ng-lottie height="150px" [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie>
+            <span style="color:#ffffff">Syncing SkyVault with RAIDA...</span>
+        </div>
+    </ng-container>
+</div>

@@ -1,0 +1,40 @@
+<div class="authWrapper authWrapperIntro">
+    <div class="welcomeHolder">
+        <div class="container" *ngIf="showContent">
+            <img src="assets/logo_new_only_cc.svg" alt="logo" class="welcomeLogo">
+            <h2 class="welcomeHeading">Welcome to CloudCoin Manager!</h2>
+            <p class="welcomeSubhead">All-in-one Software to Manage Your CloudCoins</p>
+            <div class="row walletChooserWrap">
+
+                <div class="col-md-12">
+                    <div class="walletItem">
+                        <img src="assets/localwallet_icon.svg" alt="" class="walletIcon">
+                        <h2 class="walletItemHeader">Wallet</h2>
+                        <p class="walletItemDesc">Store CloudCoins as <b>files</b> on your device. Your Wallet is
+                            on your computer, but not online.</p>
+                        <a href="javascript:;" class="btnCustomBlue" routerLink="/localwallet">Create a Wallet</a>
+                    </div>
+                </div>
+                <div class="gap50"></div>
+                <div class="col-12 mt-5">
+                    <div class="walletItem">
+                        <a href="javascript:;" class="btnCustomBlue" routerLink="/dashboard">Skip</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" *ngIf="isShow && (showContent == false)">
+            <h2 class="text-white">Connecting to RAIDA servers...</h2>
+        </div>
+
+        <div class="onEventLoadWrap" *ngIf="showLoader">
+            <ng-container>
+                <div class="text-center loader_show">
+                    <ng-lottie height="180px" [options]="options" (animationCreated)="animationCreated($event)">
+                    </ng-lottie>
+                    <span style="color:#ffffff">RAIDA servers connecting...</span>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

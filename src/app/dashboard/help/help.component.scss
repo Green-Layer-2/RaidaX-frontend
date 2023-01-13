@@ -1,0 +1,49 @@
+.helpWrapper{
+    height: calc(100vh - 140px);
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 5px;
+    .newsSection{
+        display: block;
+        margin-bottom: 10px;
+        
+.helpHed{
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  .iconBox{
+    margin-right: 10px;
+    width: 40px;
+    img{
+      width: 30px;
+    }
+  }
+  .newsBox{
+    display: flex;
+    justify-content: flex-start;
+    align-items: top;
+    margin-bottom: 30px;
+    h3{
+      font-size: 20px;
+      color: #fff;
+    }
+    p{
+      margin-bottom: 0;
+      font-size: 16px;
+      color: #fff;
+      a{
+        color: #0884FF;
+        
+      }
+    }
+    a{
+      color: #0884FF;
+      font-size: 16px;
+    }
+  }
+    }
+    
+}

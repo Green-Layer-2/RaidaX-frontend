@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../../../../../src/app/dashboard/transactions/buy/buy.component.scss"
+    ],
+    "names": [],
+    "file": "buy.component.min.css"
+}

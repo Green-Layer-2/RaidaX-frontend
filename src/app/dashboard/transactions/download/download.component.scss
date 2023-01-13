@@ -1,0 +1,46 @@
+.hideimage{
+    display: none;
+  }
+  
+  
+  .formField{
+    margin-bottom: 15px;
+   
+    input{
+        width: 300px;
+        height: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.26);
+        border-radius: 4px;
+        background-color: transparent !important;
+        color: #777;
+        font-size: 16px;
+        &::placeholder{
+            color: #777;
+            font-size: 16px;
+        }
+        &:focus{
+            border: solid 1px #0884FF;
+            outline: transparent;
+        }
+    }
+    select{
+        width: 300px;
+        height: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.26);
+        border-radius: 4px;
+        background-color: transparent !important;
+        option{
+            background-color: #2C2C2C;
+            font-size: 16px;
+            color: #fff;
+            padding: 10px 0;
+        }
+        &:focus{
+            border: solid 1px #0884FF;
+            outline: transparent;
+        }
+    }
+  }
+  input{
+    height: auto;
+}

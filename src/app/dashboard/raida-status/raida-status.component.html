@@ -1,0 +1,47 @@
+<div>
+    <h2 class="subHedOne">RAIDA Status and Echo Times <button onClick="window.location.reload();"
+            class="btn btn-primary">
+            Check Again</button></h2>
+</div>
+<div class="raidaStatOuter">
+    <div class="raidaStatWrap">
+        <div class="row">
+            <div class="col-6 col-lg-4 col-xl-3">
+                <table>
+                    <tr *ngFor="let data of latencies | slice: 0:13; let i = index;">
+                        <td>
+                            <span class="raidaStatDesc">RAIDA {{ ('0' + i).slice(-2)}}</span>
+                            <span class="raidaStatDesc ml-4" [ngStyle]="{color : data === 0 ? 'red' : 'green' }">{{data
+                                ===
+                                0 ? "TIMED OUT" : (data/1000).toFixed(3)+' sec'}}</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-6 col-lg-4 col-xl-3">
+                <table>
+                    <tr *ngFor="let data of latencies | slice:  13: 25; let j = index;">
+                        <td>
+                            <span class="raidaStatDesc">RAIDA {{j + 13}}</span>
+                            <span class="raidaStatDesc ml-4" [ngStyle]="{color : data === 0 ? 'red' : 'green' }">{{data
+                                ===
+                                0 ? "TIMED OUT" : (data/1000).toFixed(3)+' sec'}}</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-8">
+
+                <div class="gap20"></div>
+                <span *ngIf="isTimeout" class="textOne" style="opacity: 0.7;">TIMED OUT means the response exceeded
+                    the seconds allowed to respond. This could be caused by a slow network or because the RAIDA was
+                    blocked (usually by office routers). It could also be caused by your computer being old and
+                    unable
+                    to
+                    handle 25 threads at once. Try changing your settings to increase the timeout. Or try using a
+                    more
+                    powerful computer.</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="transWrapper">
+  <div class="headerbackWrap">
+    <a href="javascript:;" routerLink="/dashboard/home" class="backBtnInHeader"><img src="assets/arrow.svg" alt=""></a>
+    <span class="titleOne">Transfer Between Wallets</span>
+  </div>
+  <ng-container>
+    <form [formGroup]="transferForm">
+      <div class="formInline">
+        <label for="username">Transfer from:</label>
+        <span style="opacity: 0.7;">{{userLocal}}</span>
+      </div>
+      <div class="gap10"></div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="gap20"></div>
+          <div class="formInline">
+            <span style="opacity: 0.7; font-size:medium;">Transfer to another Wallet from the dropdown menu.</span>
+          </div>
+          <div class="gap10"></div>
+
+          <div class="lineSection">
+            <div class="customeDropdownTwo" (clickOutside)="closeDropDown()">
+              <div class="triger" (click)="customSelToggler('local')">
+                <img [src]="cSelectorImg" height="20" alt="">
+                <span>{{cSelectorText}}</span>
+              </div>
+              <div class="menuShowTwo scroll" *ngIf="customSelectorOpen">
+                <div class="menus" *ngFor="let data of all; let i = index;"
+                  (click)="customSelector(data.name, 'local')">
+                  <img src="assets/folder-w-border.svg" height="18" alt="icon">
+                  <span>{{data.name}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gap30"></div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="formField">
+            <label for="">Amount</label>
+          </div>
+        </div>
+        <div class="col-md-6 dispFlex dispFlexPriceTrans">
+          <div class="inputTagWrapper">
+            <span href="javascript:;" class="inpTag">CC</span>
+            <input type="tel" style="text-align:center;" placeholder="0" formControlName="amount"
+              (keypress)="_keyUp($event)">
+          </div>
+        </div>
+      </div>
+      <div class="gap30"></div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="formField formFieldTwo">
+            <label for="">Remarks <small>(optional)</small></label>
+            <input type="text" formControlName="tag" placeholder="Ex: Send it to Antoine">
+          </div>
+          <div *ngIf="isValidInput('tag')">
+            <span class="errorMsg" *ngIf="transferForm.controls['tag'].errors?.maxlength"><img
+                src="assets/error_info_icon.svg" alt="error icon">Remarks can't be longer than 64
+              characters.</span>
+          </div>
+          <div class="gap20"></div>
+        </div>
+      </div>
+    </form>
+  </ng-container>
+  <div class="transBottomFooter">
+    <a href="javascript:;" [ngClass]="{btnDisable: !this.transferForm?.valid}" class="btnCustomBlue btnLarge"
+      (click)="transferCoin()">Transfer CC</a>
+  </div>
+</div>
+
+<div class="onEventLoadWrap" *ngIf="showLoader">
+  <ng-container>
+    <div class="text-center loader_show">
+      <ng-lottie height="150px" [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie>
+      <span style="color:#ffffff">{{loadingMessage}}</span>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,13 @@
+<ng-container *ngIf="!showHome">
+    <div class="leftPanleWrapper" *ngIf="showLeftBarOnSm">
+        <a href="javascript:;" class="backArroLeft" (click)="closeLeftBar()"><img src="assets/arrow.svg" alt=""></a>
+        <app-left-panel></app-left-panel>
+    </div>
+    <div class="rightpanelWrapper">
+        <a href="javascript:;" class="menuCaller" (click)="callLeftBar();"><img src="assets/menu.svg" alt=""></a>
+        <router-outlet></router-outlet>
+    </div>
+</ng-container>
+<ng-container *ngIf="showHome">
+        <router-outlet></router-outlet>
+</ng-container>

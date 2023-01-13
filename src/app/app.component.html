@@ -1,0 +1,32 @@
+<div class="bodyWrapper" [ngClass]="themeTogChanger ? 'themedark' : 'themeLight'">
+    <div class="tools">
+        <div class="customdropDownHolder" (clickOutside)="closeTools()">
+            <a href="javascript:;" class="btnBlueTools" (click)="toggleTools()"><span
+                    class="textWithIcon">Tools</span><i class="fa fa-caret-down"></i>
+            </a>
+            <div class="dropDownBox" *ngIf="showToolDropdown">
+                <a href="javascript:;" routerLink="/dashboard/news" class="toolItem" (click)="getCorrectRoute()"><img
+                        src="assets/news.svg" alt="settings"><span class="ml-2">News</span></a>
+                <a href="javascript:;" routerLink="/dashboard/settings" class="toolItem"
+                    (click)="getCorrectRoute()"><img src="assets/settings_icon_white.svg" alt="settings"><span
+                        class="ml-2">Settings</span></a>
+                <a href="javascript:;" routerLink="/dashboard/raida_status" class="toolItem"
+                    (click)="getCorrectRoute()"><img src="assets/raida_status1.png" alt="settings"><span
+                        class="ml-2">RAIDA Status</span></a>
+                <a href="javascript:;" routerLink="/dashboard/help" class="toolItem" (click)="getCorrectRoute()"><img
+                        src="assets/support_icon_white.svg" alt="settings"><span class="ml-2">Help & Support</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="themingWrap">
+        <a href="javascript:;" class="SelectedthemeName" (click)="themeDropDownCaller()">
+            <ng-container *ngIf="themeLightActive">
+                <img src="assets/lightmode_new.svg" alt="">
+            </ng-container>
+            <ng-container *ngIf="themeDarkActive">
+                <img src="assets/darkmode_new.svg" alt="">
+            </ng-container>
+        </a>
+    </div>
+    <router-outlet></router-outlet>
+</div>

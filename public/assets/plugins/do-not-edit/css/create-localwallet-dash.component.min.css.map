@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../../../../../src/app/dashboard/create-localwallet-dash/create-localwallet-dash.component.scss"
+    ],
+    "names": [],
+    "file": "create-localwallet-dash.component.min.css"
+}

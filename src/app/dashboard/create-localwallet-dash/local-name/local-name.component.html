@@ -1,0 +1,49 @@
+<div class="gap10"></div>
+<div class="gap20"></div>
+<div class="transWrapper">
+  <div class="headerbackWrap border-0">
+    <a href="javascript:;" routerLink="/dashboard/home" class="backBtnInHeader"><img src="assets/arrow.svg" alt=""></a>
+  </div>
+  <div class="gap20"></div>
+  <div class="transBody">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <h2 class="titleOne">Provide a name for your Wallet.</h2>
+          <div class="gap10"></div>
+          <div class="skyAddressFieldWrap">
+            <form [formGroup]="localName">
+              <div class="formField">
+                <label for="username">Wallet Name</label>
+                <input style="width: 300px;" type="text" placeholder="Ex: LocalWallet" class="form-control"
+                  formControlName="username" name="username" id="username">
+                <div *ngIf="isValidInput('username')">
+                  <span class="errorMsg" *ngIf="localName.controls['username'].errors?.required"><img
+                      src="assets/error_info_icon.svg" alt="error icon">Wallet name is reqiured.</span>
+                  <span class="errorMsg"><img src="assets/error_info_icon.svg" alt="error icon"> Only numbers,
+                    letters and special characters (except <> : | ? * " / \) are allowed.</span>
+                </div>
+              </div>
+              <div class="gap30"></div>
+              <button [ngClass]="{'btnDisable':!localName.valid }" [disabled]=!localName.valid
+                class="btnCustomBlue btnLarge" (click)="onSubmit()">Create a Wallet</button>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <img src="assets/localwallet-create-name-black-white.png" alt="localwallet image" class="stepperMainImg">
+        </div>
+      </div>
+    </div>
+    <div class="transBottomFooter">
+      <div class="bottomPartSubmit"
+        style="border-top: 2px solid rgba(255, 255, 255, 0.26); padding-top: 20px; padding-bottom: 10px;">
+        <div class="container">
+          <span class="infoText">
+            <img src="assets/info_circle.svg" alt="">You can access your Wallet from your computer only.
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

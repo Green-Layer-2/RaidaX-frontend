@@ -1,0 +1,7 @@
+{
+    "animations/": {
+        "target": "assets/",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}   

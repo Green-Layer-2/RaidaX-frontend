@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,OAAO,AAAA,CACH,UAAU,CAAE,IAAI,CAChB,UAAU,CAAE,KAAK,CACpB,AACD,AAAA,KAAK,AAAA,CACD,MAAM,CAAE,IAAI,CACf",
+    "sources": [
+        "../../../../../src/app/dashboard/transactions/transfer/transfer.component.scss"
+    ],
+    "names": [],
+    "file": "transfer.component.min.css"
+}

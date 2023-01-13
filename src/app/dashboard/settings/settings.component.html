@@ -1,0 +1,77 @@
+<div class="settingsWrapper">
+  <div class="headerbackWrap">
+    <span class="titleOne">Settings</span>
+  </div>
+  <div class="gap10"></div>
+  <div class="settingBody">
+    <div class="tabHolder">
+      <div class="tabHeader">
+        <a href="javascript:;" class="tabItem">Performance</a>
+      </div>
+      <div class="tabBody">
+        <div class="tabPerformCont">
+          <h2 class="subHedOne">Performance Settings</h2>
+          <p class="textOne">These settings are used to manually control your server timeouts, modes of transaction,
+            etc.
+          </p>
+          <p class="note"><img src="assets/info-white.svg" alt="icon" data-toggle="tooltip" data-placement="top"
+              ngbTooltip="Minimum means that it is faster but more likely to time out. Maximum means it is slower and less likely to time out.">
+            These are optimised based on your internet speed.
+            & location</p>
+          <div class="gap20"></div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="formField">
+                <label for="">Max Notes <img data-toggle="tooltip" data-placement="top"
+                    ngbTooltip="Coins the program will send at one time." src="assets/question-white.svg"
+                    alt="icon"></label>
+                <span class="text-white">1</span>
+                <mat-slider style="width:65%" class="min" thumbLabel [displayWith]="formatLabel"
+                  (change)="updateSetting($event, 'max')" [value]="max" tickInterval="100" min="1" max="1800"
+                  aria-label="units"></mat-slider>
+                <span class="text-white">1800</span>
+
+                <span class="badge badge-primary"
+                  style="border-radius:100%; width:auto; height:30px; padding-top:10px; margin-left:60px;">{{max}}</span>
+              </div>
+              <div class="formField">
+                <label for="">Request Timeout <img data-toggle="tooltip" data-placement="top"
+                    ngbTooltip="This is the amount of time the program will wait for a RAIDA to respond before it gives up. Normally a RAIDA should respond within .5 seconds. Increasing this to 100% will have it wait for 2 seconds. You can reduce this time to make the program run faster at the expense of accuracy."
+                    src="assets/question-white.svg" alt="icon"></label>
+                <span class="text-white">1%</span>
+                <mat-slider style="width:65%" class="min" thumbLabel [displayWith]="formatLabel"
+                  (change)="updateSetting($event, 'req')" [value]="req" tickInterval="100" min="1" max="100"
+                  aria-label="units"></mat-slider>
+                <span class="text-white">100%</span>
+
+                <span class="badge badge-primary"
+                  style="border-radius:100%; width:auto; height:30px; padding-top:10px; margin-left:50px;">{{req}}</span>
+
+              </div>
+
+              <div class="formField">
+                <label for="">Echo Timeout <img data-toggle="tooltip" data-placement="top"
+                    ngbTooltip="This is the amount of time the program will wait for a RAIDA to respond before it gives up. Normally a RAIDA should respond within .5 seconds. Increasing this to 100% will have it wait for 2 seconds. You can reduce this time to make the program run faster at the expense of accuracy."
+                    src="assets/question-white.svg" alt="icon"></label>
+                <span class="text-white">1%</span>
+                <mat-slider style="width:65%" class="min" thumbLabel [displayWith]="formatLabel"
+                  (change)="updateSetting($event, 'echo')" [value]="echo" tickInterval="100" min="1" max="100"
+                  aria-label="units"></mat-slider>
+                <span class="text-white">100%</span>
+                <span class="badge badge-primary"
+                  style="border-radius:100%; width:auto; height:30px; padding-top:10px; margin-left:50px;">{{echo}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="transBottomFooter">
+    <div class="footerFixed">
+      <button class="btnCustomBlack" (click)="taskSetting()" [ngClass]="{'btnDisable': settings == false}">Save
+        changes</button>
+    </div>
+  </div>
+</div>

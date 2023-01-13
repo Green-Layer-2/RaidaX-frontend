@@ -1,0 +1,27 @@
+<div class="headerbackWrap">
+  <span class="titleOne"><a href="{{this.news?.home_page_url}}">{{this.news?.title}}</a></span>
+</div>
+<div class="gap20"></div>
+<div class="newsContainer">
+  <div class="newsSection">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="sectionBox" *ngFor="let data of this.news?.items">
+          <h3 class="sectionSubHed">
+            <span class="sectionSubHed text-white"><a class="text-white" href="{{data.url}}">{{data.title}}</a></span>
+          </h3>
+          <div class="sectionContent">
+            <p [innerHTML]="data.content_html">{{data.content_html}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="onEventLoadWrap" *ngIf="showLoader">
+  <ng-container>
+    <div class="text-center loader_show">
+      <ng-lottie height="150px" [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie>
+      <span style="color:#ffffff">Raida server connecting.</span>
+    </div>
+  </ng-container>

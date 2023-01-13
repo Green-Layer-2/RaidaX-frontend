@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AACA,AAAA,YAAY,AAAC,CACT,KAAK,CAAE,IAAI,CACd,AAED,AAAA,oBAAoB,AAAC,CACjB,UAAU,CAAE,IAAI,CACnB,AAED,AACI,UADM,CACN,KAAK,AAAC,CACF,OAAO,CAAE,YAAY,CACrB,KAAK,CAAE,KAAK,CACZ,gBAAgB,CAAE,sBAAsB,CACxC,aAAa,CAAE,GAAG,CAElB,MAAM,CAAE,GAAG,CAAC,KAAK,CAAC,sBAAyB,CAC9C,AARL,AASI,UATM,CASN,WAAW,AAAC,CACR,OAAO,CAAE,YAAY,CACrB,cAAc,CAAE,QAAQ,CACxB,SAAS,CAAE,IAAI,CACf,KAAK,CAAE,IAAI,CACX,WAAW,CAAE,IAAI,CACjB,WAAW,CAAE,GAAG,CACnB",
+    "sources": [
+        "../../../../../src/app/auth/create-skywallet/create-address/create-address.component.scss"
+    ],
+    "names": [],
+    "file": "create-address.component.min.css"
+}

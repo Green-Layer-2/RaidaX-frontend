@@ -1,0 +1,44 @@
+<div class="leftPanelHolder">
+    <div class="leftPlogoWrap">
+        <img src="assets/logo_new_only_cc.svg" alt="" class="lpLogoImg">
+    </div>
+    <div class="lpBodyWrap">
+        <div class="lpBodyTop">
+            <a class="lpuserName">
+                <span class="totBlncText">Total Balance</span>
+                <span class="totBlncVal">{{totalBalance }} <sup>cc</sup></span>
+            </a>
+
+            <div class="walletInfoOuter">
+                <div class="walletInfoWrapper walletInfoLocal">
+                    <div class="walletInfoHolder">
+                        <h6 style="color: #0884ff; ">Wallets</h6>
+                    </div>
+
+                    <div class="tabBody">
+                    
+                            <div class="" *ngFor="let data of all; let i = index;">
+                                <div class="walletAcntHolder" style="cursor: pointer;"
+                                    [ngClass]="{'activeHolder': data.name === userLocal}"
+                                    (click)="getWalletDetail(data.name)">
+                                    <img src="assets/1093522-200.png" class="wallet-icon mr-3"
+                                        alt="localwallet icon"><span class="acntVal mr-auto">{{data.name}}</span>
+                                    <span class="acntVal">{{data.balance}}</span>
+                                </div>
+                            </div>
+                            <div class="walletInfoHolder">
+                                <div class="wltInfoLeft">
+                                    <span>Create a New Wallet</span>
+                                </div>
+                                <a href="javascript:;" class="addWallet" routerLink="/dashboard/create-localwallet-dash">
+                                    <img src="assets/add_circle_img.svg"
+                                        alt="add circle"></a>
+                            </div>
+            
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

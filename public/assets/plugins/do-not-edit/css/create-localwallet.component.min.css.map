@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "../../../../../src/app/auth/create-localwallet/create-localwallet.component.scss"
+    ],
+    "names": [],
+    "file": "create-localwallet.component.min.css"
+}

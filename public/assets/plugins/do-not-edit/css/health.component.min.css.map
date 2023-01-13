@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,MAAM,CAAC,EAAE,CACT,MAAM,CAAC,EAAE,AAAC,CACN,OAAO,CAAE,kBAAkB,CAC3B,cAAc,CAAE,mBAAmB,CACtC,AACD,AAAA,SAAS,AAAC,CACN,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CACZ,KAAK,CAAE,IAAI,CACX,aAAa,CAAE,IAAI,CACnB,MAAM,CAAE,eAAe,CACvB,KAAK,CAAE,IAAI,CACd",
+    "sources": [
+        "../../../../../src/app/dashboard/functions/health/health.component.scss"
+    ],
+    "names": [],
+    "file": "health.component.min.css"
+}

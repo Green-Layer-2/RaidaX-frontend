@@ -1,0 +1,510 @@
+<div class="leftPanleWrapper" *ngIf="showLeftBarOnSm">
+  <a href="javascript:;" class="backArroLeft" (click)="closeLeftBar()"><img src="assets/arrow.svg" alt=""></a>
+  <div class="leftPanelHolder">
+    <div class="leftPlogoWrap">
+      <img src="assets/logo_new_only_cc.svg" alt="" class="lpLogoImg">
+    </div>
+    <div class="lpBodyWrap">
+      <div class="lpBodyTop">
+        <a class="lpuserName">
+          <span class="totBlncText">Total Balance</span>
+          <span class="totBlncVal">{{totalBalance }} <sup>cc</sup></span>
+        </a>
+
+        <div class="walletInfoOuter">
+          <div class="walletInfoWrapper walletInfoLocal">
+            <div class="walletInfoHolder">
+              <h6 style="color: #0884ff; ">Wallets</h6>
+        </div>
+
+
+            <div class="tabBody">
+              <div class="" *ngFor="let data of all; let i = index;">
+                <div class="walletAcntHolder" style="cursor: pointer;"
+                  [ngClass]="{'activeHolder': data.name === userLocal}"
+                  (click)="getWalletDetail(data.name)">
+                  <img src="assets/1093522-200.png" class="wallet-icon mr-3" alt="localwallet icon"><span
+                    class="acntVal mr-auto">{{data.name}}</span>
+                  <span class="acntVal">{{data.balance}}</span>
+                </div>
+              </div>
+
+              <div class="walletInfoHolder">
+                <div class="wltInfoLeft">
+                  <span>Create a New Wallet</span>
+                </div>
+                <a href="javascript:;" class="addWallet" routerLink="/dashboard/create-localwallet-dash"><img
+                    src="assets/add_circle_img.svg" alt="add circle"></a>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="rightpanelWrapper">
+  <a href="javascript:;" class="menuCaller" (click)="callLeftBar();"><img src="assets/menu.svg" alt=""></a>
+  <div class="homeWrapper">
+    <ng-container *ngIf="!showLoader">
+      <div class="row homeHeader">
+        <div class="col-12 homeHeaderInner">
+          <ng-container>
+            <h4 class="userName">
+              <img class="wallet_icon" src="assets/1093522-200.png" alt="localwallet icon">
+              {{transaction.payload?.name != ''? transaction.payload?.name : 'Unavailable'}}
+            </h4>
+            <h2 class="blncValueHeading">{{transaction.payload?.balance != 'null'? transaction.payload?.balance :
+              'Unavailable' }} <span><sup>cc</sup></span></h2>
+          </ng-container>
+        </div>
+
+        <div class="col-12 homeHeadRight">
+          <div class="homeHeadRightDropInner">
+            <div class="customdropDownHolder" (clickOutside)="closeDropDown()">
+              <a href="javascript:;" class="btnCustomBlue" (click)="toggleDropDown()">
+                <span class="textWithIcon">New Transaction</span><img src="assets/caret-down.svg" alt=""
+                  class="imgInBtn">
+              </a>
+              <div class="dropDownBox" *ngIf="showDropDown">
+                <a href="javascript:;" class="ml-3" 
+                  routerLink="/dashboard/transactions/import">Deposit Coins</a>
+                <a href="javascript:;" class="ml-3" 
+                  (click)="redirect('export')">Withdraw
+                  Coins</a>
+                <a href="javascript:;" class="ml-3"
+                  (click)="transferCC()">Transfer
+                  Coins</a>
+          
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="homeBody">
+        <div class="tableWrapper">
+          <div class="tableHeader">
+            <div class="tableHeaderLeft">
+              <span class="refreshbtn">
+                <button onClick="window.location.reload();" class="refresh_page"> &#x21bb;</button>
+              </span>
+              <span class="tableHead">Recent Transactions
+              </span>
+            </div>
+            <div class="mr-auto">
+              <div class="position-relative search tableSearchFieldWrap ml-3">
+                <i class="fa fa-search position-absolute"></i>
+                <input class="form-control tableSearchField" type="text" (keyup)="doFilter($event.target.value)"
+                  [(ngModel)]="term" placeholder="Search">
+              </div>
+            </div>
+            <div class="tableHeaderRight">
+              <div class="customdropDownHolder" (clickOutside)="closeWltFunc()">
+                <a href="javascript:;" class="btnBlueWallet" (click)="toggleWltFunc()"> <span class="textWithIcon">Other
+                    Actions</span><img src="assets/caret-down.svg" alt="" class="imgInBtn">
+                </a>
+                <div class="dropDownBox" *ngIf="showWalletDropdown">
+                  <div class="customdropDownHolder1">
+                    <a href="javascript:;" class="dropbtn"><span class="textWithIcon">Wallet Actions</span><i
+                        class="fa fa-caret-right imgInBtn"></i></a>
+                    <div class="dropDownBox1">
+                      <a href="javascript:;" (click)="deleteUserModalToggler('backup')">Back up Wallet</a>
+                      <a href="javascript:;" (click)="deleteUserModalToggler('deletewallet')">Delete Wallet</a>
+                      <a href="javascript:;" (click)="deleteUserModalToggler('rename')">Rename Wallet</a>
+                    </div>
+                  </div>
+                  <div class="customdropDownHolder1">
+                    <a href="javascript:;" class="dropbtn"><span class="textWithIcon">Coin Actions</span><i
+                        class="fa fa-caret-right imgInBtn"></i></a>
+                    <div class="dropDownBox1">
+                      <a href="javascript:;" (click)="deleteUserModalToggler('health')"><span
+                          class="textWithIcon">Verify Coin Authenticity</span></a>
+                      <a href="javascript:;" (click)="deleteUserModalToggler('fixlimbo')"><span class="textWithIcon">Fix
+                          Unprocessed Coins</span></a>
+                    </div>
+                  </div>
+
+                  <div class="customdropDownHolder1">
+                    <a href="javascript:;" class="dropbtn"><span class="textWithIcon">Records Actions</span><i
+                        class="fa fa-caret-right imgInBtn"></i></a>
+                    <div class="dropDownBox1">
+                      <a href="javascript:;" (click)="deleteUserModalToggler('delete')"><span
+                          class="textWithIcon">Delete Transaction Records</span></a>
+                      <a href="javascript:;" (click)="download()"><span class="textWithIcon">Export
+                          History</span></a>
+                      <a href="javascript:;" (click)="listDownload()"><span class="textWithIcon">Download Serial
+                          Numbers</span></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="example-container mat-elevation-z8 table table-bordered table-responsive-sm tableFixHead"
+            (matSortChange)="sortData($event)">
+            <table matSort (matSortChange)="sortData($event)">
+              <tr>
+                <th mat-sort-header="datetime">Date</th>
+                <th mat-sort-header="message">Transaction Remarks</th>
+                <th mat-sort-header="type">Type</th>
+                <th mat-sort-header="amount">Amount (CC)</th>
+                <th mat-sort-header="running_balance">Balance</th>
+                <th></th>
+              </tr>
+              <tbody>
+                <tr *ngFor="let dessert of sortedData | filter:term" class="scroll">
+                  <td>{{dessert.datetime | date : 'short'}}</td>
+                  <td [innerHTML]="dessert.message"></td>
+                  <td>{{dessert.type | titlecase }}</td>
+                  <td class="text-right">
+                    <span [ngStyle]="{'color':dessert.amount > 0 ? '#39D02B' : 'red' }">
+                      {{dessert.amount}}
+                    </span>
+                  </td>
+                  <td class="text-right">{{dessert.running_balance}}</td>
+                  <td class="text-center" (click)="receipt(dessert.receiptid, dessert.datetime)">
+                    <a style="cursor: pointer;"><i style="color:#0884ff" class="fa fa-search"></i></a>
+                  </td>
+                </tr>
+              </tbody>
+
+            </table>
+            <div *ngIf="transaction.payload?.transactions?.length == 0">
+              <div class="d-flex justify-content-center text-white">No Transactions!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="showLoader">
+      <div class="text-center">
+        <ng-lottie height="150px" [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie>
+        <span style="color:#ffffff">{{loadingMessage}}</span>
+      </div>
+    </ng-container>
+
+  </div>
+</div>
+
+
+<div class="raidaServerStatusWrap">
+  <div class="row raidaserveRow">
+    <div class="col-sm-12">
+      <div class="raidaServerStatus">
+        <ng-container>
+          <div class="sectionOne">
+            <div class="serverDiv">
+              <div class="raidalogo ml-1"><img src="assets/raida-logo.svg" alt="icon"></div>
+              <div class="signalWrap" *ngFor="let d of latencies">
+                <div placement="top" [ngStyle]="{'background-color': d != 0 ? '#39D02B' : 'rgb(255, 60, 45)'}"
+                  class="signalDiv"></div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modalContainer" *ngIf="deleteUserModal">
+  <div class="modalOverlay"
+    (click)="type === 'localwallet' ? deleteUserModalToggler('deletewallet') : deleteUser('deletewallet')"></div>
+  <div class="modalWrap modalMedium">
+    <div class="modalHeader">
+      <h1>Delete Wallet</h1>
+      <div class="modalClose"
+        (click)="type === 'localwallet' ? deleteUserModalToggler('deletewallet') : deleteUser('deletewallet')">
+        <img src="assets/close-white.svg" alt="icon">
+      </div>
+    </div>
+    <div class="modalBody">
+      <div class="gap20"></div>
+      <div class="sectionOne">
+        <h2 class="modalSubhed">Deleting the Wallet deletes the transaction records
+          too.</h2>
+        <h2 class="modalSubhed">Are you sure you want to delete your Wallet:
+          {{userLocal}}? </h2>
+        <div class="gap20"></div>
+        <form [formGroup]="deleteForm">
+          <div class="formField">
+            <label class="checkboxInpHolder checkBoxWrap">
+              <input type="checkbox" formControlName="check2"><span>I understand that this process is permanent and
+                irreversible.</span>
+            </label>
+          </div>
+        </form>
+      </div>
+      <div class="gap50"></div>
+    </div>
+    <div class="modalFooter">
+      <div class="buttonWrap">
+        <button class="btnCustomBlue buttonWide"
+          [ngClass]="{'disabled': this.deleteForm.invalid}" (click)="deletewallet()">Yes, delete Wallet.</button>
+        <button class="cancelTransparent"
+          (click)="type === 'localwallet' ? deleteUserModalToggler('deletewallet') :  deleteUser('deletewallet')">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modalContainer" *ngIf="fixlimboModal">
+  <div class="modalOverlay" (click)="this.fixlimboModal = !this.fixlimboModal"></div>
+  <div class="modalWrap modalMedium">
+    <div class="modalHeader">
+      <h1>Fix Wallet</h1>
+      <div class="modalClose" (click)="this.fixlimboModal = !this.fixlimboModal">
+        <img src="assets/close-white.svg" alt="icon">
+      </div>
+    </div>
+    <div class="modalBody">
+      <div class="gap20"></div>
+      <div class="sectionOne">
+        <h2 class="modalSubhed">Find your Wallet's unprocessed coins.</h2>
+        <h2 class="modalSubhed">Do you want to fix your Wallet: {{userLocal}}? </h2>
+      </div>
+      <div class="gap50"></div>
+    </div>
+    <div class="modalFooter">
+      <div class="buttonWrap">
+        <button class="btnCustomBlue buttonWide" routerLink="/dashboard/functions/fix-limbo">Yes,
+          fix Wallet.</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modalContainer" *ngIf="fixModal">
+  <div class="modalOverlay" (click)="this.fixModal = !this.fixModal"></div>
+  <div class="modalWrap modalMedium">
+    <div class="modalHeader">
+      <h1>Fix Wallet</h1>
+      <div class="modalClose" (click)="this.fixModal = !this.fixModal">
+        <img src="assets/close-white.svg" alt="icon">
+      </div>
+    </div>
+    <div class="modalBody">
+      <div class="gap20"></div>
+      <div class="sectionOne">
+        <h2 class="modalSubhed">Fix your wallet's fractured coins.</h2>
+        <h2 class="modalSubhed">Do you want to fix your wallet: {{userLocal}}? </h2>
+      </div>
+      <div class="gap50"></div>
+    </div>
+    <div class="modalFooter">
+      <div class="buttonWrap">
+        <button class="btnCustomBlue buttonWide"
+          routerLink="/dashboard/functions/fix">Yes, fix Wallet.</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modalContainer" *ngIf="healthModal">
+  <div class="modalOverlay" (click)="type === 'localwallet' ? deleteUserModalToggler('health') : deleteUser('health')">
+  </div>
+  <div class="modalWrap modalMedium">
+    <div class="modalHeader">
+      <h1>Verify Coin Authenticity</h1>
+      <div class="modalClose"
+        (click)="type === 'localwallet' ? deleteUserModalToggler('health') : deleteUser('health')">
+        <img src="assets/close-white.svg" alt="icon">
+      </div>
+    </div>
+    <div class="modalBody">
+      <div class="gap20"></div>
+      <div class="sectionOne">
+        <h2 class="modalSubhed">Verifying the authenticity of your coins will ensure that all your coins are 100%
+          authentic. It will move coins to
+          the Fractured (Fracked) or Counterfeit folder if they are not 100% authentic.</h2>
+        <h2 class="modalSubhed">Do you want to check the authenticity of your coins in the Wallet, {{userLocal}}? </h2>
+      </div>
+      <div class="gap50"></div>
+    </div>
+    <div class="modalFooter">
+      <div class="buttonWrap">
+        <button class="btnCustomBlue buttonWide" routerLink="/dashboard/functions/health_check">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modalContainer" *ngIf="backupModal">
+  <div class="modalOverlay" (click)="type === 'localwallet' ? deleteUserModalToggler('backup') : deleteUser('backup')">
+  </div>
+  <div class="modalWrap modalMedium">
+    <div class="modalHeader">
+      <h1>Back up Wallet</h1>
+      <div class="modalClose"
+        (click)="type === 'localwallet' ? deleteUserModalToggler('backup') : deleteUser('backup')">
+        <img src="assets/close-white.svg" alt="icon">
+      </div>
+    </div>
+    <div class="modalBody">
+      <div class="gap20"></div>
+      <div class="sectionOne">
+        <h2 class="modalSubhed">This will allow you to create a backup of your coins.</h2>
+        <h2 class="modalSubhed">Do you want to make a backup of your Wallet:
+          {{userLocal}}? </h2>
+      </div>
+      <div class="gap50"></div>
+    </div>
+    <div class="modalFooter">
+      <div class="buttonWrap">
+        <button class="btnCustomBlue buttonWide" routerLink="/dashboard/functions/backup">YES, BACK UP WALLET</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modalContainer" *ngIf="deleteModal">
+  <div class="modalOverlay" (click)="deleteUserModalToggler('delete')"></div>
+  <div class="modalWrap modalMedium">
+    <div class="modalHeader">
+      <h1>Delete Transaction History</h1>
+      <div class="modalClose" (click)="deleteUserModalToggler('delete')">
+        <img src="assets/close-white.svg" alt="icon">
+      </div>
+    </div>
+    <div class="modalBody">
+      <div class="gap20"></div>
+      <div class="sectionOne">
+        <h2 class="modalSubhed">You will not be able to see your transaction history.</h2>
+        <h2 class="modalSubhed">Are you sure you want to delete transaction history of: {{userLocal}}? </h2>
+        <div class="gap20"></div>
+        <form [formGroup]="deleteTrans">
+          <div class="formField">
+            <label class="checkboxInpHolder checkBoxWrap" for="delete">
+              <input type="checkbox" id="delete" formControlName="check2"><span>I understand that this process is
+                permanent and
+                irreversible.</span>
+            </label>
+          </div>
+        </form>
+      </div>
+      <div class="gap50"></div>
+    </div>
+    <div class="modalFooter">
+      <div class="buttonWrap">
+        <button class="btnCustomBlue buttonWide" [ngClass]="{'disabled': this.deleteTrans.invalid}"
+          (click)="deleteTransaction()">Yes, delete transaction.</button>
+        <button class="cancelTransparent" (click)="deleteUserModalToggler('delete')">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modalContainer" *ngIf="showreceipt">
+  <div class="modalOverlay" (click)="showreceipt = false"></div>
+  <div class="modalWrap modalMedium">
+    <div class="modalHeader">
+      <h1>Details:</h1>
+      <div class="modalClose" (click)="showreceipt = false">
+        <img src="assets/close-white.svg" alt="icon">
+      </div>
+    </div>
+    <div class="modalBody scroll1">
+      <div class="gap20"></div>
+      <div class="sectionOne">
+        <p class="text-white mb-n1">Receipt: {{receipid}}</p>
+        <p class="text-white mb-n1">{{receiptTime | date:'MM/dd/yyyy HH:mm'}}</p>
+        <div class="gap20"></div>
+        <div class="formField">
+          <label for="">Total Coins Attempted: &nbsp; <span style="opacity: 0.7;">{{totalcoins}}</span></label>
+        </div>
+        <div class="gap10"></div>
+        <div class="formField">
+          <label for="">Total Authentic: &nbsp; <span style="opacity: 0.7;">{{totalauthentic}}</span></label>
+        </div>
+        <div class="gap10"></div>
+        <div class="formField">
+          <label for="">Total Authentic (Fractured): &nbsp; <span style="opacity: 0.7;">{{totalfracked}}</span></label>
+        </div>
+        <div class="gap10"></div>
+        <div class="formField">
+          <label for="">Total Counterfeit: &nbsp; <span style="opacity: 0.7;">{{totalcounterfeit}}</span></label>
+        </div>
+        <div class="gap10"></div>
+        <div class="formField">
+          <label for="">Total Unprocessed: &nbsp; <span style="opacity: 0.7;">{{totallimbo}}</span></label>
+        </div>
+        <div class="gap20"></div>
+        <p class="text-white mb-n1">The Pownstring shows each of the 25 RAIDA’s responses from 0 to 24 encoded in a
+          single character. p=pass,
+          f=fail, u=untried, n=no response and e=error.</p>
+        <div class="gap30"></div>
+        <div *ngFor="let data of receiptdetails | keyvalue : returnZero">
+          <p class="text-white mb-n1">Serial Number : {{data.value.sn}}</p>
+          <p class="text-white mb-n1"> Pownstring : {{data.value.pownstring}}</p>
+          <p class="text-white mb-n1"> Result : {{data.value.result}}</p>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modalContainer" *ngIf="renameModal">
+  <div class="modalOverlay" (click)="deleteUserModalToggler('rename')"></div>
+  <div class="modalWrap modalMedium">
+    <div class="modalHeader">
+      <h1>Rename wallet</h1>
+      <div class="modalClose" (click)="deleteUserModalToggler('rename')">
+        <img src="assets/close-white.svg" alt="icon">
+      </div>
+    </div>
+    <div class="modalBody">
+      <div class="gap20"></div>
+      <div class="sectionOne">
+        <div class="formField">
+          <label for="username">Wallet name</label>
+          <input type="text" placeholder="Ex: LocalWallet" class="" [(ngModel)]="wallet_name" name="username" #reName>
+        </div>
+      </div>
+    </div>
+    <div class="gap50"></div>
+    <div class="modalFooter">
+      <div class="buttonWrap">
+        <button class="btnCustomBlue buttonWide" [ngClass]="{'disabled': this.wallet_name === ''}"
+          (click)="rename()">Yes, Rename Wallet</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modalContainer" *ngIf="showRaida">
+  <div class="modalOverlay" (click)="showRaida = !showRaida"></div>
+  <div class="modalWrap modalMedium">
+    <div class="modalHeader">
+      <h1>All RAIDA Status</h1>
+      <div class="modalClose" (click)="showRaida = !showRaida">
+        <img src="assets/close-white.svg" alt="icon">
+      </div>
+    </div>
+    <div class="modalBody">
+      <div class="gap20"></div>
+      <div class="sectionOne">
+        <div class="serverDiv">
+          <div class="raidalogo"><img src="assets/raida-logo.svg" alt="icon"></div>
+          <div class="signalWrap" *ngFor="let d of latencies">
+            <div placement="top" [ngStyle]="{'background-color': d != 0 ? '#39D02B' : 'rgb(255, 60, 45)'}"
+              class="signalDiv"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="onEventLoadWrap" *ngIf="showLoader1">
+  <ng-container>
+    <div class="text-center  loader_show">
+      <ng-lottie height="150px" [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie>
+      <span style="color:#ffffff">{{loadingMessage}}</span>
+    </div>
+  </ng-container>
+</div>

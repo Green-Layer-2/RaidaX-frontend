@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,MAAM,CAAC,EAAE,CAAE,MAAM,CAAC,EAAE,AAAC,CACjB,OAAO,CAAE,kBAAkB,CAC3B,cAAc,CAAE,mBAAmB,CACtC",
+    "sources": [
+        "../../../../../src/app/dashboard/functions/fix/fix.component.scss"
+    ],
+    "names": [],
+    "file": "fix.component.min.css"
+}

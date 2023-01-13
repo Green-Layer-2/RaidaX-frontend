@@ -1,0 +1,404 @@
+.radia_btn {
+    font-weight: 500;
+    background: #2c2c2c;
+    padding: 11px 24px;
+    border-radius: 5px;
+    font-size: 17px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+.refresh_page {
+    border-radius: 6px;
+    display: inline-block;
+    transition: all 0.1s ease;
+    min-width: 30px;
+    background: #0884ff;
+    padding: 3px 10px;
+    margin-right: 50px;
+    color: #fff;
+    font-size: 18px;
+}
+
+.scroll1 {
+    overflow: auto;
+    max-height: 406px;
+}
+
+.custom_check label {
+    position: relative;
+    padding-left: 26px;
+    display: inline-block;
+    color: #fff;
+    margin: 0;
+    line-height: 19px;
+}
+
+.custom_check label::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    height: 17px;
+    width: 17px;
+    border-radius: 0px;
+    border: 1px solid #fff;
+}
+
+.custom_check label::before {
+    opacity: 0;
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 11px;
+    border-right: 3px solid #fff;
+    border-bottom: 3px solid #fff;
+    left: 6px;
+    top: 2px;
+    transform: rotate(45deg);
+}
+
+.custom_check input:checked~label::before {
+    opacity: 1;
+}
+
+.position-items {
+    position: fixed;
+    bottom: 0;
+    right: -40px;
+    align-items: center;
+    background: #0884ff;
+    border-radius: 7px;
+    padding: 8px 0;
+    transform: scale(0.8);
+}
+
+.circle_design {
+    height: 14px;
+    width: 14px;
+    background: #39d02b;
+    border-radius: 50px;
+    margin-right: 7px;
+}
+
+.homeHeader {
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    @media screen and (max-width: 576px) {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .homeHeadRight {
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+        justify-content: center;
+
+        .homeHeadRightDropInner {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .userName {
+        font-size: 30px;
+        color: #fff;
+        margin-bottom: 5px;
+        font-weight: 400;
+        margin-right: 20px;
+        max-width: 86%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        @media (max-width: 1100px) {
+            width: 82%;
+        }
+
+        img {
+            width: 35px;
+            margin-right: 15px;
+        }
+
+        .wallet_icon {
+            width: 35px;
+            margin-right: 15px;
+            margin-bottom: 3px;
+            filter: invert(0);
+        }
+    }
+
+    .blncHeading {
+        font-size: 18px;
+        color: #d7d7d7;
+        margin-bottom: 10px;
+        line-height: 20px;
+    }
+
+    .blncValueHeading {
+        font-size: 28px;
+        font-weight: 800;
+        color: #fff;
+        line-height: 30px;
+        margin-bottom: 5px;
+    }
+
+    .blncValueSubHeading {
+        font-size: 20px;
+        font-weight: 400;
+        color: #d7d7d7;
+        line-height: 30px;
+        margin-bottom: 0;
+    }
+}
+
+.refreshIcon {
+    font-size: 16px;
+    padding: 1px 7px;
+    position: relative;
+    top: -3px;
+    margin-left: 10px;
+
+    @media screen and (max-width: 576px) {}
+}
+
+.homeWrapperEmpty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 92vh;
+}
+
+.homeBtnSubHeading {
+    @media screen and (max-width: 768px) {
+        display: inline-block;
+        font-size: 20px;
+        margin-right: 10px;
+    }
+}
+
+i {
+    font-size: 1rem;
+    color: #333;
+    top: 0.75rem;
+    left: 0.75rem;
+}
+
+
+.tableSearchField {
+    padding-left: 2.5rem;
+}
+
+::placeholder {
+    color: #333;
+}
+
+::ng-deep .mat-sort-header-container:not(.mat-sort-header-sorted) .mat-sort-header-arrow {
+    opacity: 1 !important;
+    transform: translateY(0px) !important;
+    color: white !important;
+    padding-bottom: 2px !important;
+}
+
+.example-container {
+    max-height: 450px;
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: inherit;
+}
+
+.homeHeaderInner {
+    display: flex;
+    align-items: center;
+    padding-right: 170px;
+    margin-bottom: 5px;
+}
+
+.invWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.inventoryRow {
+    color: white;
+
+    .col {
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+}
+
+.invValueWrap {
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #181818;
+    min-width: 70px;
+}
+
+.inventoryRowIn {
+    display: flex;
+    align-items: center;
+}
+
+.inventoryHeading {
+    margin-right: 5px;
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 0;
+
+    img {
+        width: 20px;
+        margin-right: 5px;
+    }
+
+    @media (max-width: 1192px) {
+        font-size: 18px !important;
+
+        img {
+            width: 15px !important;
+        }
+    }
+}
+
+.raidaServerStatusWrap {
+    position: fixed;
+    bottom: 0;
+    left: 300px;
+    right: 0;
+    padding: 15px;
+    background-color: #222;
+
+    .raidaserveRow {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.raidaServerStatus {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .radia_btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 10px;
+    }
+}
+
+.bottomBordered {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.26);
+}
+
+.tableHeaderRight {
+    display: flex;
+    align-items: center;
+}
+
+.tableFixHead {
+    overflow: auto;
+    max-height: 450px;
+}
+
+.tableFixHead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    background: #181818;
+}
+
+.serverDiv {
+    width: 100%;
+    height: 40px;
+    border-radius: 15px;
+    background-color: #2d2d2d;
+    box-shadow: 0 3px 10px #ffffff26;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.serverDiv .raidalogo {
+    height: 30px;
+    margin-right: 5px;
+}
+
+.serverDiv .signalWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.serverDiv .signalWrap .signalDiv {
+    width: 5px;
+    height: 20px;
+    border-radius: 6px;
+    margin: 0 2px;
+    background-color: #999;
+}
+
+.leftPanleWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    padding: 20px;
+    border-radius: 0 20px 20px 0;
+    box-shadow: 4px 0px 20px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    z-index: 999;
+
+    @media screen and (max-width: 768px) {
+        position: absolute;
+        padding-top: 30px;
+    }
+}
+
+.rightpanelWrapper {
+    width: calc(100% - 300px);
+    margin-left: 300px;
+    padding: 30px;
+    min-height: 100vh;
+
+    @media screen and (max-width: 768px) {
+        width: 100% !important;
+        margin-left: 0 !important;
+        padding: 20px;
+    }
+}
+
+.backArroLeft {
+    display: none;
+    position: absolute;
+    left: 20px;
+    top: 5px;
+
+    @media screen and (max-width: 768px) {
+        display: inline-block;
+    }
+
+    img {
+        height: 18px;
+    }
+}

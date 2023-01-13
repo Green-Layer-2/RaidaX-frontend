@@ -1,0 +1,33 @@
+
+.authWrapper {
+    width: 100%;
+}
+
+.skyAddressFieldWrap {
+    margin-top: 30px;
+}
+
+.formField {
+    input {
+        display: inline-block;
+        width: 250px;
+        background-color: transparent !important;
+        border-radius: 4px;
+        border: 1px solid rgb(255 255 255 / 26%);
+        transition: all 0.2s;
+        &:focus {
+            border: 1px solid rgba(18, 122, 244, 0.48) !important;
+        }
+    }
+    .domainName {
+        display: inline-block;
+        vertical-align: text-top;
+        font-size: 15px;
+        color: #fff !important;
+        line-height: 15px;
+        margin-left: 5px;
+    }
+}
+.uploadFileWrap {
+    min-height: 46px;
+}

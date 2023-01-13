@@ -1,0 +1,66 @@
+<div class="transWrapper">
+    <div class="headerbackWrap">
+        <a href="javascript:;" routerLink="/dashboard/home" class="backBtnInHeader"><img src="assets/arrow.svg"
+                alt=""></a>
+        <span class="titleOne">Backup</span>
+    </div>
+    <div class="gap20"></div>
+    <div class="transBody" *ngIf="!afterclick">
+        <p class="subTitleTwo">This will allow you to create a backup of your coins.</p>
+        <div class="gap20"></div>
+        <div class="lineSection">
+            <div class="backupSectionOne">
+                <div class="formField">
+                    <label for="">Backup Folder</label>
+                    <div>
+                        <div style="border-radius: 6px;" class="filepicker">
+                            <span>{{file}}</span>
+                            <div class="icon_wrap" (click)="getPath()">
+                                <img src="assets/folder_icon.svg" alt="" class="folderIcon">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gap20"></div>
+                <div class="formFieldThree">
+                    <label for="">File Name Tag (optional)</label>
+                    <div class="inputLine">
+                        <input type="text" [(ngModel)]="tag" width="300" placeholder="Ex: Latest backup"
+                            (change)="getLength()">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="backupSectionTwo" *ngIf="afterclick">
+        <div class="headthSubHed">
+            <h4>Backup completed for the Wallet: <span>{{userLocal}}</span></h4>
+        </div>
+        <div class="text-white">
+            <div class="gap20"></div>
+            <div class="healthListDiv">
+                <p style="margin-left: 0px;">Total CC Backed Up: <span>{{payload?.data?.TotalCoins}}</span></p>
+            </div>
+            <div class="gap10"></div>
+            <div class="healthListDiv">
+                <p style="margin-left: 0px;">Saved To: <span style="color: #0884FF;">{{payload?.data?.FileName}}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="transBottomFooter">
+        <a href="javascript:void(0);" *ngIf="!afterclick"
+            [ngClass]="{'btnDisable': this.file === ''  || remarkInvalid == true}"
+            (click)="this.file === '' ? '' : backup()" class="btnCustomBlue">Back Up</a>
+        <a href="javascript:void(0);" *ngIf="afterclick" routerLink="/dashboard/home" class="btnCustomBlue">Continue</a>
+    </div>
+</div>
+
+<div class="onEventLoadWrap" *ngIf="showLoader">
+    <ng-container>
+        <div class="text-center loader_show">
+            <ng-lottie height="150px" [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie>
+            <span style="color:#ffffff">Backing up Wallet...</span>
+        </div>
+    </ng-container>
+</div>

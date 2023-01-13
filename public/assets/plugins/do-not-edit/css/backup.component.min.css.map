@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,iBAAiB,AAAA,CACb,MAAM,CAAE,OAAO,CAClB",
+    "sources": [
+        "../../../../../src/app/dashboard/functions/backup/backup.component.scss"
+    ],
+    "names": [],
+    "file": "backup.component.min.css"
+}

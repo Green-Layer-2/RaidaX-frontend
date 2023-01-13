@@ -1,0 +1,55 @@
+<div class="transWrapper">
+    <div class="headerbackWrap">
+        <a href="javascript:;" routerLink="/dashboard/home" class="backBtnInHeader"><img src="assets/arrow.svg"
+                alt=""></a>
+        <span class="titleOne">Find Unprocessed Coins</span>
+    </div>
+    <div class="gap20"></div>
+    <div class="transBody">
+        <p class="subTitleTwo">Find your unprocessed coins.</p>
+        <div class="lineSection">
+            <div *ngIf="!goTODash">
+                <div class="progressWrap">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped" role="progressbar"
+                            style="background-color: green!important;"
+                            [ngStyle]="{'width': fixLim?.progress < 10 ? 10 + fixLim?.progress + '%' : (fixLim?.progress - 5) + '%'}"
+                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">Checking your Wallet...</div>
+                    </div>
+                </div>
+                <div class="formField" *ngIf="fixLim?.progress == '100' && goTODash">
+                    <div class="checkboxInpHolder">
+                        <img src="assets/green-check.svg" alt="icon"> <span style="color: #2a4;"> Unprocessed Coins
+                            are now processed.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="gap10"></div>
+            <div class="fixLimboTwo" *ngIf="fixLim?.status === 'completed'">
+                <div class="healthList">
+                    <div class="healthListDiv">
+                        <p>Total Unprocessed Coins:</p>
+                        <h6>{{fixLim?.data?.total_fixed + fixLim?.data?.total_skipped + fixLim?.data?.total_errors}}
+                        </h6>
+                    </div>
+                    <div class="healthListDiv">
+                        <p>Coins Successfully Processed:</p>
+                        <h6>{{fixLim?.data?.total_fixed}}</h6>
+                    </div>
+                    <div class="healthListDiv">
+                        <p>Total Coins Skipped:</p>
+                        <h6>{{fixLim?.data?.total_skipped}}</h6>
+                    </div>
+                    <div class="healthListDiv">
+                        <p>Total Errors:</p>
+                        <h6>{{fixLim?.data?.total_errors}}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="transBottomFooter">
+        <button class="btnCustomBlue" [ngClass]="{'btnDisable': goTODash === false}"
+            (click)="goTODash ? router.navigate(['/dashboard/home']) : ''">Close</button>
+    </div>
+</div>
